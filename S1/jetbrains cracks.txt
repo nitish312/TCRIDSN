@@ -1,0 +1,56 @@
+##Note1: instructions bellow is based on windows, if you are on OS X / Linux, you should change addresses according to your operating system
+  be sure that the .jar file full path doesn't contain any spaces
+
+##Note2: Only one javaagent should be used at the same time, if you've replacing/upgrading from other agents, be sure to remove coresponding
+  line from vmoptions
+
+  See FAQ bellow for more information
+---------------------------------------------------
+This agent will set JetBrains product trial evaluation exipre time at your desired time!
+
+1) Copy ja-netfilter-all folder to C:\
+	(So path of ja-netfilter.jar file should be C:\ja-netfilter-all\ja-netfilter.jar)
+
+	1.1) by default, expire time will be set to December 31, 2022. you can change it to ANY time by opening:
+	     C:\ja-netfilter-all\config\mymap.conf with notepad & changing date in front of EQUAL,paidUpTo->.
+	     EQUAL,licenseeName-> can also be changed!
+
+2) Locate .vmoptions file of desired JetBrains product:
+	This is located in the bin directory of your JetBrains IDE. For example:
+	C:\Program Files\JetBrains\IDEA\bin\idea64.exe.vmoptions
+
+	Or, if you use Custom VM Options, the path would be, for example:
+
+	C:\Users\%username%\AppData\Roaming\JetBrains\IntelliJIdea2021.3\idea64.exe.vmoptions
+
+	So if something doesn't work, make sure you change the right file (custom takes precedence over the one in the bin directory)
+
+3) add following line to the end of the .vmoptions file:
+
+-javaagent:C:\ja-netfilter-all\ja-netfilter.jar
+
+4) Run JetBrains product, Select "Start Trial", login to your JetBrains account & click on start trial.
+	NOTE: if you don't have JB account, just create a fake one with a fake email at JB website, then login with that account.
+
+Done!
+
+NOTE: this license can activate Code With Me plugin & most probably every plugin that supports trial activation or is on the marketplace!
+
+## ALTERNATIVE METHOD ##
+	you can skip step 2 & 3, run JB porduct & start evaluation, then from IDE menu "Configure" (Gear icon located on bottom-left)
+	or "Help" -> "Edit Custom VM Options...", add line of step 3 to end of Custom VM Options & restart IDE!
+---------------------------------------------------
+FAQ:
+Q: Date is not correct.
+A: 
+Edit the correct .vmoptions. Edit the file for the platform you are using (x86, x64). Remember that .vmoptions located in C:\Users\Name\AppData\Roaming\JetBrains\ProductNameXXXX.X\product64.exe.vmoptions has priority over the one located in C:\Program Files\JetBrains\ProductNameXXXX.X\bin\product64.exe.vmoptions. 
+Check that the javaagent .jar path does not contain spaces. The line starts with a "-" and it is the only one in the file, the others are commented out with a "#" at the beginning of the line.
+Make sure .conf files inside ja-netfilter-all\config folder are not corrupted; try resetting them to default files.
+
+
+Q: Where is the .vmoptions file on OS X / Linux?
+A: Use the menu item in the IDE: Gear Icon -> Edit custom VM options
+	Note: to access this, you have to activate jetbrains product in trial by creating a free account on JetBrains website & the Activate it fully.
+ 
+
+FU48Z7YY4K-eyJsaWNlbnNlSWQiOiJGVTQ4WjdZWTRLIiwibGljZW5zZWVOYW1lIjoi5r+A5rS75p2l5rqQIGlkZWHCt2phdmF0aWt1wrdjbiIsImFzc2lnbmVlTmFtZSI6IiIsImFzc2lnbmVlRW1haWwiOiIiLCJsaWNlbnNlUmVzdHJpY3Rpb24iOiJGb3IgZWR1Y2F0aW9uYWwgdXNlIG9ubHkiLCJjaGVja0NvbmN1cnJlbnRVc2UiOmZhbHNlLCJwcm9kdWN0cyI6W3siY29kZSI6IkRQTiIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiREIiLCJwYWlkVXBUbyI6IjIwMjItMDUtMjciLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlBTIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJJSSIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUlNDIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IkdPIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJETSIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUlNGIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBDIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSQyIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiQ0wiLCJwYWlkVXBUbyI6IjIwMjItMDUtMjciLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IldTIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSRCIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUlMwIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSTSIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiQUMiLCJwYWlkVXBUbyI6IjIwMjItMDUtMjciLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJTViIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJEQyIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUlNVIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJEUCIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQREIiLCJwYWlkVXBUbyI6IjIwMjItMDUtMjciLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFdTIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBTSSIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQQ1dNUCIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQUFMiLCJwYWlkVXBUbyI6IjIwMjItMDUtMjciLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUEdPIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBQQyIsInBhaWRVcFRvIjoiMjAyMi0wNS0yNyIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQUkIiLCJwYWlkVXBUbyI6IjIwMjItMDUtMjciLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFNXIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlJTIiwicGFpZFVwVG8iOiIyMDIyLTA1LTI3IiwiZXh0ZW5kZWQiOnRydWV9XSwibWV0YWRhdGEiOiIwMTIwMjEwNTI4RVBKQTAwMDAwOSIsImhhc2giOiIyNDUxMTgzOC8wOi0xNjY5OTY2NTkzIiwiZ3JhY2VQZXJpb2REYXlzIjowLCJhdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJpc0F1dG9Qcm9sb25nYXRlZCI6ZmFsc2V9-piYDuAwTPSsMuqHTaa3WFLGumjOewfNX7iwLZbS5enjGLflfugEPePyq043wYjywOn7po13vTpoE+Z1o1yx328O+vZGSBPCKdKAtSn7VaGlgS4zOPaFp66g8qH8m8qfSXwWW6vZ3p9Q5QfesslYefQ2WVWRpGGMc9ASi02C4gvrWx+KSWyAwkaSxxYbugExxz9bDfntmfY5FKxvvbADWRKKN30Sfkke8yOr/vJrCYBePK799r+/uOeRR7Aq6XbYwx+s+rg9vzarqxBHWOn3MssnbzlYRoqWTosqAVUagwxZc1+47vxVm3TphcO69b2Y3KtrdbhAS+JSkpk3s0ZwpiQ==-MIIETDCCAjSgAwIBAgIBDTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTIwMTAxOTA5MDU1M1oXDTIyMTAyMTA5MDU1M1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyMDEwMTkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDCP4uk4SlVdA5nuA3DQC+NsEnZS9npFnO0zrmMWcz1++q2UWJNuGTh0rwi+3fUJIArfvVh7gNtIp93rxjtrQAuf4/Fa6sySp4c32MeFACfC0q+oUoWebhOIaYTYUxm4LAZ355vzt8YeDPmvWKxA81udqEk4gU9NNAOz1Um5/8LyR8SGsSc4EDBRSjcMWMwMkYSauGqGcEUK8WhfplsyF61lKSOFA6VmfUmeDK15rUWWLbOMKgn2cxFA98A+s74T9Oo96CU7rp/umDXvhnyhAXSukw/qCGOVhwKR8B6aeDtoBWQgjnvMtPgOUPRTPkPGbwPwwDkvAHYiuKJ7Bd2wH7rAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUJNoRIpb1hUHAk0foMSNM9MCEAv8wSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBAB2J1ysRudbkqmkUFK8xqhiZaYPd30TlmCmSAaGJ0eBpvkVeqA2jGYhAQRqFiAlFC63JKvWvRZO1iRuWCEfUMkdqQ9VQPXziE/BlsOIgrL6RlJfuFcEZ8TK3syIfIGQZNCxYhLLUuet2HE6LJYPQ5c0jH4kDooRpcVZ4rBxNwddpctUO2te9UU5/FjhioZQsPvd92qOTsV+8Cyl2fvNhNKD1Uu9ff5AkVIQn4JU23ozdB/R5oUlebwaTE6WZNBs+TA/qPj+5/wi9NH71WRB0hqUoLI2AKKyiPw++FtN4Su1vsdDlrAzDj9ILjpjJKA1ImuVcG329/WTYIKysZ1CWK3zATg9BeCUPAV1pQy8ToXOq+RSYen6winZ2OO93eyHv2Iw5kbn1dqfBw1BuTE29V2FJKicJSu8iEOpfoafwJISXmz1wnnWL3V/0NxTulfWsXugOoLfv0ZIBP1xH9kmf22jjQ2JiHhQZP7ZDsreRrOeIQ/c4yR8IQvMLfC0WKQqrHu5ZzXTH4NO3CwGWSlTY74kE91zXB5mwWAx1jig+UXYc2w4RkVhy0//lOmVya/PEepuuTTI4+UJwC7qbVlh5zfhj8oTNUXgN0AOc+Q0/WFPl1aw5VV/VrO8FCoB15lFVlpKaQ1Yh+DVU8ke+rt9Th0BCHXe0uZOEmH0nOnH/0onD
