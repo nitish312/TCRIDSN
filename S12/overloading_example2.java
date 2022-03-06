@@ -1,0 +1,20 @@
+//Method overloading : different data type of arguments.
+class Adder1
+{
+    static int add(int a, int b){
+        return  a+ b;
+    }
+
+    static double add(double a, double b){
+        return  a+ b;
+    }
+
+}
+
+public class overloading_example1 {
+
+    public static void main(String[] args) {
+        System.out.println(Adder1.add(12.45,23.85));
+        System.out.println(Adder1.add(12,23));
+    }
+}
